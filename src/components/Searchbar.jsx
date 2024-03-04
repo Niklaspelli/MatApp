@@ -4,7 +4,8 @@
 function Searchbar() {
   return (
     <div>
-      <input>Sök efter maträtt</input>
+      
+      <input></input>
     </div>
   )
 }
