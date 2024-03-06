@@ -1,6 +1,8 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-function FoodDetails() {
+function Category() {
 
   const [category, setCategory] = useState([]);
 
@@ -19,20 +21,18 @@ function FoodDetails() {
   return (
     <div>
   {category.map((recipe) => {
-    return(
-      // eslint-disable-next-line react/jsx-key
-      <div>
+    return( 
+// eslint-disable-next-line react/jsx-key
+<Link to={"/meals/" + recipe.idCategory}>       
 <h2>{recipe.strCategory}</h2>
 <img src={recipe.strCategoryThumb} alt="" />
-<p>{recipe.strCategoryDescription}</p>
-      </div>
-        
+ </Link>
     );
   })}
 </div>
   );
 }
 
-export default FoodDetails
+export default Category
 
 //https://www.themealdb.com/api.php

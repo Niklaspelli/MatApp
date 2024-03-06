@@ -1,27 +1,25 @@
-import { useState, useEffect } from 'react';
-import FoodDetails from './components/FoodDetails';
+
+import Category from './components/Category';
 import Searchbar from './components/Searchbar';
-import Home from './components/pages/Home'; 
+import Home from './pages/Home'; 
+import Pages from './pages/Pages';
 /* import { useParams } from "react-router-dom"; */
 import './App.css'
+import { BrowserRouter, Router } from 'react-router-dom';
 
 
 function App() {
 
 
   return (
-    <>
-
-     
-
-   <Searchbar />
-     <FoodDetails />
-     <Home /> 
-
-    </>
+    <BrowserRouter>    
+    <Home />
+ 
+    <Searchbar />
+    <Pages />
+    <Category />
+   </BrowserRouter>
   )
 }
 
 export default App
- {/*   {data && <div>{JSON.stringify(data[0])}</div>}
-      {!data && <div>Data is not available yet..</div>} */}
