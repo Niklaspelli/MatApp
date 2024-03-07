@@ -1,39 +1,47 @@
-
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
 
 function Meals() {
+    const [meals, setMeals] = useState([]);
+    const [error, setError] = useState(null);
+    const location = useLocation();
 
-const [meals, setMeals] = useState([]);
-let params = useParams();
+    const getMeals = async (meals) => {
+        console.log(meals)
+        try {
+            const api = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${meals}`);
+            const data = await api.json();
+            if (data && data.meals) {
+                setMeals(data.meals);
+                setError(null);
+            } else {
+                setMeals([]);
+                setError('Tyvärr, hittade inga maträtter.');
+            }
+        } catch (error) {
+            console.error('Error fetcha meals:', error);
+            setMeals([]);
+            setError('Error fetching meals.Testa igen senare!.');
+        }
+    };
 
+    useEffect(() => {
+        const lastPartOfLocationPath = location.pathname.split('/').slice(-1)[0]
+        getMeals(lastPartOfLocationPath);
+    }, [location]);
 
-const getMeals = async (meals) => {
-const api = await fetch(`www.themealdb.com/api/json/v1/1/filter.php?i=${meals}`)
-
-const data = await api.json();
-setMeals(data.meals)
-};
-
-useEffect(() => {
-    getMeals(params.search)
-}, [params.meals]);
-
-
-  return (
-    <div>
-        {meals.map((meals) => {
-          return(
-          // eslint-disable-next-line react/jsx-key
-          <Link to={"/recipe/" + meals.strMeal}>
-           <img src={meals.strMealThumb} alt="" />
-                 <h4>{meals.strMeal}</h4>
-             </Link>
-);
- })}  
-    </div>
-  );
+    return (
+        <div>
+            {error && <div className='error'>Error: {error}</div>}
+            { meals && meals.map((item) => (
+                <Link key={item.idMeal} to={"/recipe/" + item.idMeal}>
+                  <img src={item.strMealThumb} alt={item.strCategory} />
+                    <h4>{item.strMeal}</h4>
+                    
+                </Link>
+            ))}
+        </div>
+    );
 }
-export default Meals
+
+export default Meals;

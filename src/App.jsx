@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Pages from './pages/Pages';
 /* import { useParams } from "react-router-dom"; */
 import './App.css'
-import { BrowserRouter, Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 
 function App() {
@@ -14,10 +14,11 @@ function App() {
   return (
     <BrowserRouter>    
     <Home />
- 
     <Searchbar />
-    <Pages />
-    <Category />
+     <Pages />
+     <Category />
+   
+   
    </BrowserRouter>
   )
 }

@@ -25,6 +25,7 @@ useEffect(() => {
     <div>
         {searchedRecipes.map((item) => {
           return(
+          // eslint-disable-next-line react/jsx-key
           <Link to={"/recipe/" + item.strCategory}>
            <img src={item.strMealThumb} alt="" />
                  <h4>{item.strMeal}</h4>
@@ -36,6 +37,3 @@ useEffect(() => {
 }
 
 export default Searched
-{/* 
-
-</Link> */}

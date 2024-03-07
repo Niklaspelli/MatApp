@@ -14,7 +14,7 @@ function Pages() {
     <Routes location={location} key={location.pathname}>
      <Route path="/" element={<Home />} />
      <Route path="/searched/:search" element={<Searched />} />
-     <Route path="/recipe/:id" element={<Recipe />} />
+     <Route path="/recipe/:name" element={<Recipe />} />
      <Route path="/meals/:type" element={<Meals />} />
     </Routes>
 
