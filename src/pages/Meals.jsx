@@ -35,7 +35,7 @@ function Meals() {
             {error && <div className='error'>Error: {error}</div>}
             { meals && meals.map((item) => (
                 <Link key={item.idMeal} to={"/recipe/" + item.idMeal}>
-                  <img src={item.strMealThumb} alt={item.strCategory} />
+                  <img src={item.strMealThumb} alt={item.strCategory} className='mealSelection'/>
                     <h4>{item.strMeal}</h4>
                     
                 </Link>

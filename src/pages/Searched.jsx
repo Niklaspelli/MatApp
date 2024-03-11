@@ -24,12 +24,11 @@ useEffect(() => {
   return (
     <div>
         {searchedRecipes.map((item) => {
-          return(
-          // eslint-disable-next-line react/jsx-key
-          <Link to={"/recipe/" + item.strCategory}>
-           <img src={item.strMealThumb} alt="" />
-                 <h4>{item.strMeal}</h4>
-             </Link>
+          return(        
+         <Link to={`/recipe/${item.idMeal}`} key={item.idMeal}>
+          <h4>{item.strMeal}</h4>
+           <img src={item.strMealThumb} alt="" className='mealSelection'/>
+                             </Link>
 );
  })}  
     </div>

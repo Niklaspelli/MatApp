@@ -18,11 +18,11 @@ function Category() {
  
 
     return (
-      <div>
+      <div className='imageMeals'>
         {categories.map((category, index) => (
           <Link key={index} to={`/meals/${category.strCategory}`}>
             <h2>{category.strCategory}</h2>
-            <img src={category.strCategoryThumb} alt={category.strCategory} />
+            <img src={category.strCategoryThumb} alt={category.strCategory} className='image-meals' />
           </Link>
         ))}
       </div>

@@ -17,7 +17,7 @@ const submitHandler = (e) => {
     <div>
       <form onSubmit={submitHandler}>
       
-      <input onChange={(e) => setInput(e.target.value)} type="text" value={input}/>
+      <input onChange={(e) => setInput(e.target.value)} type="text" placeholder="Sök din rätt här..." value={input}/>
       </form>
     </div>
   )

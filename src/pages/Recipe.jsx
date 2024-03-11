@@ -2,49 +2,61 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function Recipe() {
-   
     const [details, setDetails] = useState({});
     const location = useLocation();
 
-   
-        const fetchDetails = async () => {
-            try {
-                const api = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${details}`);
-                const detailData = await api.json();
-                if (detailData.meals && detailData.meals.length > 0) {
-                    setDetails(detailData.meals[0]);
-                } else {
-                    console.error('No details found for meal:', name);
-                    setDetails({});
-                }
-            } catch (error) {
-                console.error('Error fetching meal details:', error);
+    const fetchDetails = async (id) => {
+        try {
+            const api = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+            const detailData = await api.json();
+            if (detailData.meals && detailData.meals.length > 0) {
+                setDetails(detailData.meals[0]);
+            } else {
+                console.error('No recipe found for ID:', id);
+                setDetails({});
             }
-        };
+        } catch (error) {
+            console.error('Error fetching meal details:', error);
+        }
+    };
 
-        useEffect(() => {
-        const lastPartOfLocationPath = location.pathname.split('/').slice(-1)[0]
+    useEffect(() => {
+        const lastPartOfLocationPath = location.pathname.split('/').slice(-1)[0];
         fetchDetails(lastPartOfLocationPath);
-     }, [location]);
-   
+    }, [location]);
+
+    const getIngredients = () => {
+        const ingredients = [];
+        for (let i = 1; i <= 20; i++) {
+            const ingredient = details[`strIngredient${i}`];
+            const measure = details[`strMeasure${i}`];
+            if (ingredient && ingredient.trim() !== '') {
+                ingredients.push(`${measure} ${ingredient}`);
+            }
+        }
+        return ingredients;
+    };
+
+
+    
 
     return (
         <div>
-            {details.strMeal ? (
-                <div>
-                    <h2>{details.strMeal}</h2>
-                   
-                    <p>{details.strInstructions}</p>
-                </div>
-            ) : (
-                <p className='error'>No details found for this meal.</p>
-            )}
+            <h1>{details.strMeal}</h1>
+            <img src={details.strMealThumb} alt="" className='mealSelection'/>
+            <h2>Ingredients:</h2>
+            <ol>
+                {getIngredients().map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                ))}
+            </ol>
+            <h2>Instructions:</h2>
+             <p className='InstructionsText'>{details.strInstructions}</p>   
+            
+            
         </div>
     );
 }
 
 export default Recipe;
 
-      
-
-    
