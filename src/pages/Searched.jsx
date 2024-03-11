@@ -26,9 +26,13 @@ useEffect(() => {
         {searchedRecipes.map((item) => {
           return(        
          <Link to={`/recipe/${item.idMeal}`} key={item.idMeal}>
-          <h4>{item.strMeal}</h4>
+          <div className='imageMeals'>
+         
            <img src={item.strMealThumb} alt="" className='mealSelection'/>
+            <h4>{item.strMeal}</h4>
+             </div>
                              </Link>
+                           
 );
  })}  
     </div>

@@ -50,9 +50,11 @@ function Recipe() {
                     <li key={index}>{ingredient}</li>
                 ))}
             </ol>
-            <h2>Instructions:</h2>
-             <p className='InstructionsText'>{details.strInstructions}</p>   
-            
+             <h2>Instructions:</h2>
+            <div className='instructionBox'>
+           
+             <p>{details.strInstructions}</p>   
+            </div>
             
         </div>
     );

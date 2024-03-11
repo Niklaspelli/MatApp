@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+/* import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Category() {
@@ -31,4 +31,4 @@ function Category() {
 
 export default Category
 
-//https://www.themealdb.com/api.php
+//https://www.themealdb.com/api.php */

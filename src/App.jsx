@@ -1,5 +1,6 @@
-
-import Category from './components/Category';
+import NavCategory from './components/Nav-Category';
+import Home from './pages/Home'
+/* import Category from './components/Category'; */
 import Searchbar from './components/Searchbar';
 import Pages from './pages/Pages';
 import './App.css'
@@ -10,10 +11,11 @@ function App() {
 
 
   return (
-    <BrowserRouter>    
+    <BrowserRouter> 
+    <NavCategory /> 
     <Searchbar />
     <Pages />
-    <Category />
+   {/*  <Category /> */}
    </BrowserRouter>
   )
 }
