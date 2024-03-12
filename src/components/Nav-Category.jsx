@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 function NavCategory() {
   return (
-    <nav className="nav">
+    <nav className="topnav">
 
 
     <ul>
       <Link to={"/"}>
-     <h1>MatAppen</h1> 
+     <h4 className="active">MatAppen</h4> 
      </Link>
       <Link to={'/meals/beef'}>
        <li>

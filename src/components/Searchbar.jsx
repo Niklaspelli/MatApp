@@ -16,13 +16,13 @@ const submitHandler = (e) => {
 
   return (
     <div>
-       <FaSearch />
+       <div className='topnav'>
       <form onSubmit={submitHandler}>
-     
-      <input onChange={(e) => setInput(e.target.value)} type="text" placeholder="Sök din rätt här..." value={input}/>
+     <FaSearch />
+      <input onChange={(e) => setInput(e.target.value)} type="text" placeholder="Sök här.." value={input} className='topnav'/>
       
       </form>
-    </div>
+    </div></div>
   )
 }
 

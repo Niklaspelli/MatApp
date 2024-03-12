@@ -43,21 +43,28 @@ function Recipe() {
     return (
         <div>
             <h1>{details.strMeal}</h1>
-            <img src={details.strMealThumb} alt="" className='mealSelection'/>
+           <div className='recipe-container'>
+            <div className='recipe-list'>
             <h2>Ingredients:</h2>
-            <ol>
+            <ul>
                 {getIngredients().map((ingredient, index) => (
                     <li key={index}>{ingredient}</li>
-                ))}
-            </ol>
+                  ))}
+            </ul>
+            </div> 
+            <img src={details.strMealThumb} alt="" className='recipe-img'/>
+              <div className='instructionBox'> 
              <h2>Instructions:</h2>
-            <div className='instructionBox'>
            
-             <p>{details.strInstructions}</p>   
+           <div className='box'>
+             <p>{details.strInstructions}</p> 
+               </div>
             </div>
             
+          </div>  
         </div>
     );
+    
 }
 
 export default Recipe;

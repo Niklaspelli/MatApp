@@ -12,8 +12,9 @@ function App() {
 
   return (
     <BrowserRouter> 
-    <NavCategory /> 
     <Searchbar />
+    <NavCategory /> 
+  
     <Pages />
    {/*  <Category /> */}
    </BrowserRouter>
