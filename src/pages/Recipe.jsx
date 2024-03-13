@@ -41,7 +41,7 @@ function Recipe() {
     
 
     return (
-        <div>
+        <div className='main'>
             <h1>{details.strMeal}</h1>
            <div className='recipe-container'>
             <div className='recipe-list'>

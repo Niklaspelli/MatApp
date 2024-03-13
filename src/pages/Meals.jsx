@@ -31,7 +31,7 @@ function Meals() {
     }, [location]);
 
     return (
-        <div>
+        <div className='recipe-container'>
             {error && <div className='error'>Error: {error}</div>}
             { meals && meals.map((item) => (
                 <Link key={item.idMeal} to={"/recipe/" + item.idMeal}>

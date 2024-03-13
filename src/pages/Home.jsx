@@ -2,7 +2,7 @@
 
 function Home() {
   return (
-    <div>
+    <div className="home">
     <h1>Välkommen till MatAppen!</h1>
     Här kan du söka efter en rätt eller bläddra!
      
