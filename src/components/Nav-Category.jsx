@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 function NavCategory() {
   return (
     <nav className="topnav">
-
-
     <ul>
       <Link to={"/"}>
      <h4 className="active">MatAppen</h4> 

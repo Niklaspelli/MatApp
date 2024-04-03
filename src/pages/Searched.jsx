@@ -1,42 +1,47 @@
-
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
 function Searched() {
+  const [searchedRecipes, setSearchedRecipes] = useState([]);
+  const [error, setError] = useState(null);
+  const params = useParams();
 
-const [searchedRecipes, setSearchedRecipes] = useState([]);
-let params = useParams();
+  const getSearched = async (search) => {
+    try {
+      const api = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
+      const data = await api.json();
 
+      if (data && data.meals) {
+        setSearchedRecipes(data.meals);
+        setError(null);
+      } else {
+        setSearchedRecipes([]);
+        setError('Tyvärr, hittade inga maträtter. Testa sök på engelska!');
+      }
+    } catch (error) {
+      console.error('Error fetching meals:', error);
+      setSearchedRecipes([]);
+      setError('Error fetching meals. Testa igen senare!');
+    }
+  };
 
-const getSearched = async (searchedRecipes) => {
-const api = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchedRecipes}`)
-const data = await api.json();
-setSearchedRecipes(data.meals)
-};
-
-useEffect(() => {
-    getSearched(params.search)
-}, [params.search]);
-
+  useEffect(() => {
+    getSearched(params.search);
+  }, [params.search]);
 
   return (
     <div>
-        {searchedRecipes.map((item) => {
-          return(        
-         <Link to={`/recipe/${item.idMeal}`} key={item.idMeal}>
+      {error && <div className='error'>{error}</div>}
+      {searchedRecipes.map((item) => (
+        <Link to={`/recipe/${item.idMeal}`} key={item.idMeal}>
           <div className='imageMeals'>
-         
-           <img src={item.strMealThumb} alt="" className='mealSelection'/>
+            <img src={item.strMealThumb} alt="" className='mealSelection'/>
             <h4>{item.strMeal}</h4>
-             </div>
-                             </Link>
-                           
-);
- })}  
+          </div>
+        </Link>
+      ))}
     </div>
   );
 }
-
-export default Searched
+export default Searched;
