@@ -1,1 +1,1 @@
-School work assignment. Still some stuff to work on!
+School assignment in React. Still some stuff to work on!
